@@ -11,15 +11,23 @@
 # This class file is not called directly
 #
 class hotspot::params {
-  $user    = 'www-data'
-  $group   = 'www-data'
-  $docroot = '/var/www/hotspot'
+  $user      = 'hotspot'
+  $group     = 'hotspot'
+  $workspace = "/home/${user}/workspace"
 
-  $repository     = 'git'
-  $svn_repository = 'http://dev.hotspot.org/svn/'
-  $git_repository = 'https://github.com/cloud-hot/carrierwrt.git'
-  $hotspot_version  = 'trunk'
+  $wrt_provider     = 'git'
+  $wrt_repository   = 'https://github.com/cloud-hot/carrierwrt.git'
+  $wrt_version      = 'master'
 
-  $db_user     = 'hotspot@localhost'
-  $db_password = 'secure'
+  $owm_provider     = 'git'
+  $owm_repository   = 'https://github.com/cloud-hot/OpenWISP-Manager.git'
+  $owm_version      = 'master'
+
+  $owgm_provider     = 'git'
+  $owgm_repository  = 'https://github.com/cloud-hot/OpenWISP-Geographic-Monitoring.git'
+  $owgm_version     = 'master'
+
+  $vboot_provider     = 'git'
+  $vboot_repository = 'https://github.com/cloud-hot/vboot_reference.git'
+  $vboot_version    = 'master'
 }

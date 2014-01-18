@@ -34,51 +34,51 @@
 #  }
 #
 class hotspot(
-  $directory   = $hotspot::params::docroot,
-  $repository  = $hotspot::params::repository,
-  $version     = $hotspot::params::hotspot_version,
-  $db_user     = $hotspot::params::db_user,
-  $db_password = $hotspot::params::db_password,
-  $db_root_password = $hotspot::params::db_password,
-  $log_analytics    = true,
-  $svn_username     = false,
-  $svn_password     = false
+  $log_store   = true
 ) inherits hotspot::params {
 
   include hotspot::base
 
-  # mysql / db
-  class { 'hotspot::db':
-    username      => $db_user,
-    password      => $db_password,
-    root_password => $db_root_password,
-    require       => Class['hotspot::base'],
-  }
-
-  class { 'hotspot::php':
-     require => Class['hotspot::db'],
-  }
-
-  if $log_analytics == true {
-    include hotspot::loganalytics
-  }
+#  if $log_store == true {
+#    include hotspot::log
+#  }
 
   class { 'hotspot::user': }
 
-  # repo checkout
-  hotspot::repo { 'hotspot_repo_setup':
-    directory    => $directory,
-    version      => $version,
-    repository   => $repository,
-    svn_username => $svn_username,
-    svn_password => $svn_password,
+  # repo checkout wrt
+  hotspot::repo { 'wrt_repo_setup':
+    directory    => $hotspot::params::workspace,
+    source       => $hotspot::params::wrt_repository,
+    version      => $hotspot::params::wrt_version,
+    repository   => $hotspot::params::wrt_provider,
     require      => Class['hotspot::base'],
   }
 
-  exec { 'run_hotspot_composer':
-    command => "composer.phar update",
-    cwd     => $directory,
-    require => [ hotspot::repo['hotspot_repo_setup'], Class['hotspot::php'] ],
+  # repo checkout owm
+  hotspot::repo { 'owm_repo_setup':
+    directory    => $hotspot::params::workspace,
+    source       => $hotspot::params::owm_repository,
+    version      => $hotspot::params::owm_version,
+    repository   => $hotspot::params::owm_provider,
+    require      => Class['hotspot::base'],
+  }
+
+  # repo checkout owgm
+  hotspot::repo { 'owgm_repo_setup':
+    directory    => $hotspot::params::workspace,
+    source       => $hotspot::params::owgm_repository,
+    version      => $hotspot::params::owgm_version,
+    repository   => $hotspot::params::owgm_provider,
+    require      => Class['hotspot::base'],
+  }
+
+  # repo checkout vboot
+  hotspot::repo { 'vboot_repo_setup':
+    directory    => $hotspot::params::workspace,
+    source       => $hotspot::params::vboot_repository,
+    version      => $hotspot::params::vboot_version,
+    repository   => $hotspot::params::vboot_provider,
+    require      => Class['hotspot::base'],
   }
 
 }

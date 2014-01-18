@@ -11,7 +11,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # used by company to setup gitlab.
   # config.vm.network :public_network
 
-  config.vm.synced_folder "../vagrant-share", "/vagrant_data", type: "nfs"
+  config.vm.synced_folder "../vagrant-share", "/vagrant_data"
   
   config.vm.provider :virtualbox do |v|
     v.gui = false

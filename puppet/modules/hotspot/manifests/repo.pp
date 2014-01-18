@@ -20,10 +20,13 @@
 #
 # == Sample Usage:
 #
-#  hotspot::repo { 'hotspot_repo_simple': }
+#  hotspot::repo { 'hotspot_repo_simple': 
+#    source = 'https://github.com/cloud-hot/carrierwrt.git'
+#  }
 #
 #  hotspot::repo { 'hotspot_repo_full':
-#    directory    => '/var/www/hotspot',
+#    directory    => '/home/hotspot/workspace',
+#    source       => 'https://github.com/cloud-hot/carrierwrt.git'
 #    version      => 'trunk',
 #    repository   => 'svn',
 #    svn_username => 'svn username',
@@ -31,9 +34,10 @@
 #  }
 #
 define hotspot::repo(
-  $directory    = $hotspot::params::docroot,
-  $version      = $hotspot::params::hotspot_version,
-  $repository   = $hotspot::params::repository,
+  $directory    = $hotspot::params::workspace,
+  $source       = false,
+  $version      = master,
+  $repository   = git,
   $svn_username = false,
   $svn_password = false
 ) {
@@ -46,7 +50,7 @@ define hotspot::repo(
     vcsrepo { "${directory}":
       ensure   => present,
       provider => svn,
-      source   => "${hotspot::params::svn_repository}/${version}",
+      source   => $source,
       owner    => $hotspot::params::user,
       group    => $hotspot::params::group,
       require  => [ User["${hotspot::params::user}"], Package['subversion'] ],
@@ -59,7 +63,7 @@ define hotspot::repo(
     vcsrepo { "${directory}":
       ensure   => present,
       provider => git,
-      source   => $hotspot::params::git_repository,
+      source   => $source,
       revision => $version,
       owner    => $hotspot::params::user,
       group    => $hotspot::params::group,
