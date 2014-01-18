@@ -1,0 +1,21 @@
+[submodule "puppet/modules/apt"]
+	path = puppet/modules/apt
+	url = https://github.com/puppetlabs/puppetlabs-apt.git
+[submodule "puppet/modules/git"]
+	path = puppet/modules/git
+	url = https://github.com/puppetlabs/puppetlabs-git.git
+[submodule "puppet/modules/release"]
+	path = puppet/modules/release
+	url = https://github.com/puppetlabs/puppetlabs-release.git
+[submodule "puppet/modules/rsync"]
+	path = puppet/modules/rsync
+	url = https://github.com/puppetlabs/puppetlabs-rsync.git
+[submodule "puppet/modules/tftp"]
+	path = puppet/modules/tftp
+	url = https://github.com/puppetlabs/puppetlabs-tftp.git
+[submodule "puppet/modules/vcsrepo"]
+	path = puppet/modules/vcsrepo
+	url = https://github.com/puppetlabs/puppetlabs-vcsrepo.git
+[submodule "puppet/modules/common"]
+	path = puppet/modules/common
+	url = https://github.com/puppet-modules/puppet-common.git

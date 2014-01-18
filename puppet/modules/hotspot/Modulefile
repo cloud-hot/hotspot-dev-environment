@@ -1,0 +1,7 @@
+name    'hotspot-recipe'
+version '0.2.0'
+source 'UNKNOWN'
+author 'cloud-hot'
+license 'GPL v3 or later'
+summary 'cloud hotspot Development Environment'
+description 'Setup hotspot with MySQL and Apache or Nginx via puppet'
