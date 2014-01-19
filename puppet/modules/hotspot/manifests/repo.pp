@@ -1,7 +1,7 @@
 # = Definition: hotspot::repo
 #
 # This definition clones a specific version from a cloud-hot
-# repository into the specified directory.
+# repository into the specified directory, only support git.
 #
 # == Parameters: 
 #
@@ -9,10 +9,8 @@
 #                  directory.
 # $version::       The pkg version. Defaults to 'trunk'. 
 #                  Valid values: For example 'HEAD', 'tags/1.8.3' or 'branch/whatever'.
-# $repository::    Whether to checkout the SVN or Git reporitory. Defaults to svn. 
+# $repository::    Whether to checkout the SVN or Git reporitory. Defaults to git. 
 #                  Valid values: 'svn' and 'git'.  
-# $svn_username::  Your svn username. Defaults to false.
-# $svn_password::  Your svn password. Defaults to false.
 #
 # == Actions:
 #
@@ -21,66 +19,92 @@
 # == Sample Usage:
 #
 #  hotspot::repo { 'hotspot_repo_simple': 
-#    source = 'https://github.com/cloud-hot/carrierwrt.git'
 #  }
 #
 #  hotspot::repo { 'hotspot_repo_full':
-#    directory    => '/home/hotspot/workspace',
-#    source       => 'https://github.com/cloud-hot/carrierwrt.git'
-#    version      => 'trunk',
-#    repository   => 'svn',
-#    svn_username => 'svn username',
-#    svn_password => 'svn password'
+#    directory      => '/home/hotspot/workspace',
+#    wrt_repository => 'https://github.com/cloud-hot/carrierwrt.git'
+#    wrt_version    => 'master',
 #  }
 #
 define hotspot::repo(
-  $directory    = $hotspot::params::workspace,
-  $source       = false,
-  $version      = master,
-  $repository   = git,
-  $svn_username = false,
-  $svn_password = false
+  $directory        = $hotspot::params::workspace,
+  $wrt_repository   = $hotspot::params::wrt_repository,
+  $wrt_version      = $hotspot::params::wrt_version,
+  $owm_repository   = $hotspot::params::owm_repository,
+  $owm_version      = $hotspot::params::owm_version,
+  $owgm_repository  = $hotspot::params::owgm_repository,
+  $owgm_version     = $hotspot::params::owgm_version,
+  $vboot_repository = $hotspot::params::vboot_repository,
+  $vboot_version    = $hotspot::params::vboot_version,
 ) {
 
   if ! defined(File[$directory]) {
     file { "${directory}": }
   }
 
-  if $repository == 'svn' {
-    vcsrepo { "${directory}":
-      ensure   => present,
-      provider => svn,
-      source   => $source,
-      owner    => $hotspot::params::user,
-      group    => $hotspot::params::group,
-      require  => [ User["${hotspot::params::user}"], Package['subversion'] ],
-      basic_auth_username => $svn_username,
-      basic_auth_password => $svn_password,
-    }
+  vcsrepo { "wrt":
+    ensure   => present,
+    path     => "${directory}/carrierwrt",
+    provider => git,
+    source   => $wrt_repository,
+    revision => $wrt_version,
+    owner    => $hotspot::params::user,
+    group    => $hotspot::params::group,
+    require  => [ User["${hotspot::params::user}"], Class['git'] ],
   }
 
-  if $repository == 'git' {
-    vcsrepo { "${directory}":
-      ensure   => present,
-      provider => git,
-      source   => $source,
-      revision => $version,
-      owner    => $hotspot::params::user,
-      group    => $hotspot::params::group,
-      require  => [ User["${hotspot::params::user}"], Class['git'] ],
-    }
+  vcsrepo { "owm":
+    ensure   => present,
+    path     => "${directory}/owm",
+    provider => git,
+    source   => $owm_repository,
+    revision => $owm_version,
+    owner    => $hotspot::params::user,
+    group    => $hotspot::params::group,
+    require  => [ User["${hotspot::params::user}"], Class['git'] ],
   }
 
-  file { "${directory}/config":
-    ensure    => directory,
-    mode      => '0777',
-    subscribe => Vcsrepo["${directory}"],
+  vcsrepo { "owgm":
+    ensure   => present,
+    path     => "${directory}/owgm",
+    provider => git,
+    source   => $owgm_repository,
+    revision => $owgm_version,
+    owner    => $hotspot::params::user,
+    group    => $hotspot::params::group,
+    require  => [ User["${hotspot::params::user}"], Class['git'] ],
   }
 
-  file { "${directory}/tmp":
-    ensure    => directory,
-    mode      => '0777',
-    subscribe => Vcsrepo["${directory}"],
+  vcsrepo { "vboot":
+    ensure   => present,
+    path     => "${directory}/vboot",
+    provider => git,
+    source   => $vboot_repository,
+    revision => $vboot_version,
+    owner    => $hotspot::params::user,
+    group    => $hotspot::params::group,
+    require  => [ User["${hotspot::params::user}"], Class['git'] ],
+  }
+
+  exec { "clone wrt done": 
+    command => "echo clone wrt complete",
+    subscribe => Vcsrepo["wrt"],
+  }
+
+  exec { "clone owm done": 
+    command => "echo clone owm complete",
+    subscribe => Vcsrepo["owm"],
+  }
+
+  exec { "clone owgm done": 
+    command => "echo clone owgm complete",
+    subscribe => Vcsrepo["owgm"],
+  }
+
+  exec { "clone vboot done": 
+    command => "echo clone vboot complete",
+    subscribe => Vcsrepo["vboot"],
   }
 
 }

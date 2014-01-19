@@ -12,7 +12,7 @@
 #  include hotspot::base
 #
 class hotspot::base {
-
+  
   include apt
 
   notify {"apt-get_update": }
@@ -34,4 +34,6 @@ class hotspot::base {
   package { 'curl': ensure => latest, require => Exec['base_apt-get_update'] }
 
   include git
+
+  include tftp
 }
