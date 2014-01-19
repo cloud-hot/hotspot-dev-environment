@@ -25,3 +25,18 @@
 [submodule "puppet/modules/xinetd"]
 	path = puppet/modules/xinetd
 	url = https://github.com/puppetlabs/puppetlabs-xinetd.git
+[submodule "puppet/modules/lsb"]
+	path = puppet/modules/lsb
+	url = https://github.com/example42/puppet-lsb.git
+[submodule "puppet/modules/openssh"]
+	path = puppet/modules/openssh
+	url = https://github.com/example42/puppet-openssh.git
+[submodule "puppet/modules/rvm"]
+	path = puppet/modules/rvm
+	url = https://github.com/example42/puppet-rvm.git
+[submodule "puppet/modules/sqlite"]
+	path = puppet/modules/sqlite
+	url = https://github.com/puppetlabs/puppetlabs-sqlite.git
+[submodule "puppet/modules/apache"]
+	path = puppet/modules/apache
+	url = https://github.com/puppetlabs/puppetlabs-apache.git
