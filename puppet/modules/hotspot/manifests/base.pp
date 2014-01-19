@@ -21,21 +21,45 @@ class hotspot::base {
 
   exec { "base_apt-get_update": command => "apt-get update" }
 
-  package { 'vim': ensure => installed, require => Exec['base_apt-get_update'] }
-
-  package { 'subversion': ensure => installed, require => Exec['base_apt-get_update'] }
-
-  package { 'facter': ensure => latest, require => Exec['base_apt-get_update'] }
-
-  package { 'strace': ensure => latest, require => Exec['base_apt-get_update'] }
-
-  package { 'tcpdump': ensure => latest, require => Exec['base_apt-get_update'] }
-
-  package { 'wget': ensure => latest, require => Exec['base_apt-get_update'] }
-
-  package { 'curl': ensure => latest, require => Exec['base_apt-get_update'] }
-
   include git
 
   include tftp
+
+  $base_packages = [
+    'vim',
+    'facter',
+    'strace',
+    'tcpdump',
+    'wget',
+    'curl',
+  ]
+
+  package { $base_packages :
+    ensure => installed,
+    require => Exec['base_apt-get_update']
+  }
+
+  $openwrt_packages = [
+    'build-essential',
+    'subversion',
+    'git-core',
+    'libncurses5-dev',
+    'gawk',
+    'flex',
+    'quilt',
+    'libssl-dev',
+    'xsltproc',
+    'libxml-parser-perl',
+    'mercurial',
+    'bzr',
+    'ecj',
+    'cvs',
+    'unzip',
+  ]
+
+  package { $openwrt_packages :
+    ensure => installed,
+    require => Exec['base_apt-get_update']
+  }
+
 }
