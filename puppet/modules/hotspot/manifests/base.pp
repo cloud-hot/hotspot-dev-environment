@@ -12,10 +12,12 @@
 #  include hotspot::base
 #
 class hotspot::base {
-  
-  include apt
 
-  notify {"apt-get_update": }
+  class { 'hotspot::ppa':
+    clean_sources_list => true
+  }
+
+  notify { "apt-get_update": }
 
   exec { "base_apt-get_update": command => "apt-get update" }
 

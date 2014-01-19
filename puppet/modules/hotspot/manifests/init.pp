@@ -33,7 +33,7 @@
 #    repository => 'git',
 #  }
 #
-class hotspot(
+class hotspot (
   $log_store   = true
 ) inherits hotspot::params {
 
