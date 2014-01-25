@@ -50,24 +50,25 @@ All configuration related FAQ can be found in [Vagrant documentation](http://doc
 
 ####DONE:
 
-* [apache2](https://github.com/wesabe/puppet-apache2) (with some hacks)
-* [common](https://labs.riseup.net/code/projects/module-common)
-* [lsb](https://labs.riseup.net/code/projects/module-lsb)
-* mysql
-* postfix
-* rails
-* network
-* rsyncd
-* freeradius
-* captivepages
-* logging
-* [rkhunter](https://github.com/duritong/puppet-rkhunter.git)
-* [rvm](https://github.com/blt04/puppet-rvm)
-* [sshd](https://github.com/duritong/puppet-sshd)
+* [apache](https://github.com/puppetlabs/puppetlabs-apache.git)
+* [apt](https://github.com/puppetlabs/puppetlabs-apt.git)
+* [common](https://labs.riseup.net/code/projects/module-lsb)
+* [git](https://github.com/puppetlabs/puppetlabs-git.git)
+* [lsb](https://github.com/example42/puppet-lsb.git)
+* [openssh](https://github.com/example42/puppet-openssh.git)
+* [release](https://github.com/puppetlabs/puppetlabs-release.git)
+* [rsync](https://github.com/puppetlabs/puppetlabs-rsync.git)
+* [rvm](https://github.com/example42/puppet-rvm.git)
+* [sqlite](https://github.com/puppetlabs/puppetlabs-sqlite.git)
+* [stdlib](https://github.com/puppetlabs/puppetlabs-stdlib.git)
+* [tftp](https://github.com/puppetlabs/puppetlabs-tftp.git)
+* [vcsrepo](https://github.com/puppetlabs/puppetlabs-vcsrepo.git)
+* [xinetd](https://github.com/puppetlabs/puppetlabs-xinetd.git)
+* hotspot (own)
 
 ####TODO:
 
-* Git
+* Nginx
 
 ##Recommended Workflow
 

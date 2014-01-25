@@ -50,4 +50,5 @@ class hotspot (
     require      => Class['hotspot::base'],
   }
 
+  include hotspot::owm
 }

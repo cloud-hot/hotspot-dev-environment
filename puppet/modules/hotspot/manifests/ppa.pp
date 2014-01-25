@@ -1,4 +1,4 @@
-# = Class: hotspot::apt
+# = Class: hotspot::ppa
 # 
 # This class is used to manage apt sources.list files
 # and more.
@@ -9,7 +9,7 @@
 # 
 # == Sample Usage:
 #
-#  include hotspot::apt_source
+#  include hotspot::ppa
 #
 class hotspot::ppa (
   $clean_sources_list = true
