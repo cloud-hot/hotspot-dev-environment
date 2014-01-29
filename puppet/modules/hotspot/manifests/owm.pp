@@ -15,7 +15,9 @@ class hotspot::owm (
   $rvm_user = $hotspot::params::user
 ) {
 
-  include rvm
+  class { 'rvm':
+    version => "master"
+  }
 
   rvm::system_user {
     $rvm_user: ; vagrant: ;
@@ -24,7 +26,7 @@ class hotspot::owm (
   if $rvm_installed == "true" {
 
     rvm_system_ruby {
-      'ree-1.8.7':
+      'ree-1.8.7-2012.02':
         ensure      => 'present',
         require     => Class['rvm::system'],
         default_use => true;
@@ -34,10 +36,31 @@ class hotspot::owm (
 #        default_use => false;
     }
 
+#    rvm_gemset {
+#      "ree-1.8.7-2012.02@openwisp":
+#      ensure => present,
+#      require => Rvm_system_ruby['ree-1.8.7-2012.02'];
+#    }
+
+#    rvm_gem {
+#      'ree-1.8.7-2012.02@openwisp/bundler':
+#      ensure => '1.8.15',
+#      require => Rvm_gemset['ree-1.8.7-2012.02@openwisp'];
+#    }
+
+    #this is needed by passenger
+    rvm_gem {
+      'bundler':
+      name => 'bundler',
+      ruby_version => 'ree-1.8.7-2012.02',
+      ensure => latest,
+      require => Rvm_system_ruby['ree-1.8.7-2012.02'];
+    }
+
     class {
       'rvm::passenger::apache':
         version            => '4.0.33',
-        ruby_version       => 'ree-1.8.7',
+        ruby_version       => 'ree-1.8.7-2012.02',
         mininstances       => '3',
         maxinstancesperapp => '0',
         maxpoolsize        => '30',
@@ -52,6 +75,7 @@ class hotspot::owm (
     servername => 'owm.example.com',
     ip         => '127.0.0.1',
     docroot    => "/home/${hotspot::params::user}/workspace/owm/public",
+    require    => Vcsrepo["owm"],
   }
 
 }
