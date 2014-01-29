@@ -58,7 +58,7 @@ All configuration related FAQ can be found in [Vagrant documentation](http://doc
 * [openssh](https://github.com/example42/puppet-openssh.git)
 * [release](https://github.com/puppetlabs/puppetlabs-release.git)
 * [rsync](https://github.com/puppetlabs/puppetlabs-rsync.git)
-* [rvm](https://github.com/example42/puppet-rvm.git)
+* [rvm](https://github.com/cloud-hot/puppet-rvm)
 * [sqlite](https://github.com/puppetlabs/puppetlabs-sqlite.git)
 * [stdlib](https://github.com/puppetlabs/puppetlabs-stdlib.git)
 * [tftp](https://github.com/puppetlabs/puppetlabs-tftp.git)
