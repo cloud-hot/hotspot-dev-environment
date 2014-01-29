@@ -16,7 +16,7 @@ class hotspot::owm (
 ) {
 
   class { 'rvm':
-    version => "master"
+    branch => "master"
   }
 
   rvm::system_user {
