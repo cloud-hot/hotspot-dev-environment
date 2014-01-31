@@ -20,7 +20,7 @@ class hotspot::owm (
   }
 
   rvm::system_user {
-    $rvm_user: ; vagrant: ;
+    $rvm_user: ;
   }
 
   if $rvm_installed == "true" {
