@@ -11,9 +11,11 @@
 # This class file is not called directly
 #
 class hotspot::params {
-  $user      = 'hotspot'
-  $group     = 'hotspot'
-  $workspace = "/home/${user}/workspace"
+  $web_user      = 'hotspot'
+  $web_group     = 'hotspot'
+  $dev_user      = 'hotspot-dev'
+  #dev_group     = 'hotspot-dev'
+  $workspace = "/home/${dev_user}/workspace"
 
   $wrt_repository   = 'https://github.com/cloud-hot/carrierwrt.git'
   $wrt_version      = 'master'

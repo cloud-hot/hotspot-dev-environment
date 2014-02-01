@@ -12,7 +12,7 @@
 #  include hotspot::owm
 #
 class hotspot::owm (
-  $rvm_user = $hotspot::params::user
+  $rvm_user = $hotspot::params::dev_user
 ) {
 
   class { 'rvm':

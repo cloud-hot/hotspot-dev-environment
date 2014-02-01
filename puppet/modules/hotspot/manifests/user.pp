@@ -13,10 +13,19 @@
 class hotspot::user {
     
   # user for apache / nginx
-  user { "${hotspot::params::user}":
+  user { "${hotspot::params::web_user}":
     ensure  => present,
-    comment => $hotspot::params::user,
+    comment => $hotspot::params::web_user,
     shell   => '/bin/false',
+  }
+
+  # user for development
+  user { "${hotspot::params::dev_user}":
+    ensure     => present,
+    comment    => $hotspot::params::dev_user,
+    shell      => '/bin/bash',
+    groups     => 'vagrant',
+    managehome => 'true',
   }
 
 }

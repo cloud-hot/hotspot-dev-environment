@@ -49,9 +49,9 @@ define hotspot::repo(
     provider => git,
     source   => $wrt_repository,
     revision => $wrt_version,
-    owner    => $hotspot::params::user,
-    group    => $hotspot::params::group,
-    require  => [ User["${hotspot::params::user}"], Class['git'] ],
+    owner    => $hotspot::params::dev_user,
+    group    => $hotspot::params::dev_group,
+    require  => [ User["${hotspot::params::dev_user}"], Class['git'] ],
   }
 
   vcsrepo { "owm":
@@ -60,9 +60,9 @@ define hotspot::repo(
     provider => git,
     source   => $owm_repository,
     revision => $owm_version,
-    owner    => $hotspot::params::user,
-    group    => $hotspot::params::group,
-    require  => [ User["${hotspot::params::user}"], Class['git'] ],
+    owner    => $hotspot::params::dev_user,
+    group    => $hotspot::params::dev_group,
+    require  => [ User["${hotspot::params::dev_user}"], Class['git'] ],
   }
 
   vcsrepo { "owgm":
@@ -71,9 +71,9 @@ define hotspot::repo(
     provider => git,
     source   => $owgm_repository,
     revision => $owgm_version,
-    owner    => $hotspot::params::user,
-    group    => $hotspot::params::group,
-    require  => [ User["${hotspot::params::user}"], Class['git'] ],
+    owner    => $hotspot::params::dev_user,
+    group    => $hotspot::params::dev_group,
+    require  => [ User["${hotspot::params::dev_user}"], Class['git'] ],
   }
 
   vcsrepo { "vboot":
@@ -82,9 +82,9 @@ define hotspot::repo(
     provider => git,
     source   => $vboot_repository,
     revision => $vboot_version,
-    owner    => $hotspot::params::user,
-    group    => $hotspot::params::group,
-    require  => [ User["${hotspot::params::user}"], Class['git'] ],
+    owner    => $hotspot::params::dev_user,
+    group    => $hotspot::params::dev_group,
+    require  => [ User["${hotspot::params::dev_user}"], Class['git'] ],
   }
 
   exec { "clone wrt done": 
