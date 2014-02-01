@@ -31,23 +31,7 @@ class hotspot::owm (
         ensure      => 'present',
         require     => Class['rvm::system'],
         default_use => true;
-#      'ruby-2.1.0':
-#        ensure      => 'present',
-#        require     => Class['rvm::system'],
-#        default_use => false;
     }
-
-#    rvm_gemset {
-#      "ree-1.8.7-2012.02@openwisp":
-#      ensure => present,
-#      require => Rvm_system_ruby['ree-1.8.7-2012.02'];
-#    }
-
-#    rvm_gem {
-#      'ree-1.8.7-2012.02@openwisp/bundler':
-#      ensure => '1.8.15',
-#      require => Rvm_gemset['ree-1.8.7-2012.02@openwisp'];
-#    }
 
     #this is needed by passenger
     rvm_gem {
@@ -55,6 +39,15 @@ class hotspot::owm (
       name => 'bundler',
       ruby_version => 'ree-1.8.7-2012.02',
       ensure => present,
+      require => Rvm_system_ruby['ree-1.8.7-2012.02'];
+    }
+
+    #this is needed by openwisp
+    rvm_gem {
+      'rubygems-update':
+      name => 'rubygems-update',
+      ruby_version => 'ree-1.8.7-2012.02',
+      ensure => '1.8.25',
       require => Rvm_system_ruby['ree-1.8.7-2012.02'];
     }
 
@@ -72,11 +65,19 @@ class hotspot::owm (
 
   include apache
 
-  apache::vhost { 'sowm.example.com':
+  apache::vhost { 'owm.example.com':
     servername => 'owm.example.com',
-    ip         => '127.0.0.1',
+    port       => '80',
     docroot    => "/home/${hotspot::params::dev_user}/workspace/owm/public",
     require    => Vcsrepo["owm"],
   }
 
+  $owm_packages = [
+    'libarchive-dev',
+  ]
+
+  package { $owm_packages :
+    ensure => installed,
+    require => Exec['base_apt-get_update']
+  }
 }

@@ -16,7 +16,7 @@ class hotspot::ppa (
 ) {
 
   class { 'apt':
-    purge_sources_list => $sources_list
+    purge_sources_list => $clean_sources_list
   }
 
   apt::source { "puppetlabs_precise":

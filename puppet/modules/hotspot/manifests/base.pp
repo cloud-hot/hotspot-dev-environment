@@ -19,7 +19,10 @@ class hotspot::base {
 
   notify { "apt-get_update": }
 
-  exec { "base_apt-get_update": command => "apt-get update" }
+  exec { "base_apt-get_update":
+    command => "apt-get update",
+    require => Class['hotspot::ppa']
+  }
 
   include git
 

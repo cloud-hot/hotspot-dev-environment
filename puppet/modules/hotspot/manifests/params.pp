@@ -13,8 +13,8 @@
 class hotspot::params {
   $web_user      = 'hotspot'
   $web_group     = 'hotspot'
-  $dev_user      = 'hotspot-dev'
-  #dev_group     = 'hotspot-dev'
+  $dev_user      = 'vagrant'
+  #dev_group     = 'vagrant'
   $workspace = "/home/${dev_user}/workspace"
 
   $wrt_repository   = 'https://github.com/cloud-hot/carrierwrt.git'

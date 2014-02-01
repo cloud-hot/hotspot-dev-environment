@@ -19,13 +19,4 @@ class hotspot::user {
     shell   => '/bin/false',
   }
 
-  # user for development
-  user { "${hotspot::params::dev_user}":
-    ensure     => present,
-    comment    => $hotspot::params::dev_user,
-    shell      => '/bin/bash',
-#    groups     => 'vagrant',
-    managehome => 'true',
-  }
-
 }
