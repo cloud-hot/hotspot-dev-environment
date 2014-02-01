@@ -74,7 +74,7 @@ class hotspot::owm (
   apache::vhost { 'sowm.example.com':
     servername => 'owm.example.com',
     ip         => '127.0.0.1',
-    docroot    => "/home/${hotspot::params::user}/workspace/owm/public",
+    docroot    => "/home/${hotspot::params::dev_user}/workspace/owm/public",
     require    => Vcsrepo["owm"],
   }
 
