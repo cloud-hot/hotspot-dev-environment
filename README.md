@@ -24,7 +24,7 @@ Building the virtual machine is this easy:
 	host $ mkdir -p hotspot-workspace/vagrant-share (explained blow)
 	host $ cd hotspot-workspace 
     host $ git clone --recursive https://github.com/cloud-hot/hotspot-dev-environment.git (including all submodules )
-    host $ cd hotspot-dev-box
+    host $ cd hotspot-dev-environment
     host $ vagrant up
 
 That's it.
