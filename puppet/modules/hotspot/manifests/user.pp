@@ -24,7 +24,7 @@ class hotspot::user {
     ensure     => present,
     comment    => $hotspot::params::dev_user,
     shell      => '/bin/bash',
-    groups     => 'vagrant',
+#    groups     => 'vagrant',
     managehome => 'true',
   }
 

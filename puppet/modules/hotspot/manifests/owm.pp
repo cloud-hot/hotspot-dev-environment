@@ -16,7 +16,8 @@ class hotspot::owm (
 ) {
 
   class { 'rvm':
-    branch => 'master'
+    branch  => 'master',
+    version => 'head',
   }
 
   rvm::system_user {
@@ -53,7 +54,7 @@ class hotspot::owm (
       'bundler':
       name => 'bundler',
       ruby_version => 'ree-1.8.7-2012.02',
-      ensure => latest,
+      ensure => present,
       require => Rvm_system_ruby['ree-1.8.7-2012.02'];
     }
 
