@@ -40,7 +40,11 @@ define hotspot::repo(
 ) {
 
   if ! defined(File[$directory]) {
-    file { "${directory}": }
+    file { "${directory}":
+       owner => vagrant,
+       group => vagrant,
+       mode => 644
+    }
   }
 
   vcsrepo { "wrt":
