@@ -35,6 +35,7 @@ class hotspot::base {
     'tcpdump',
     'wget',
     'curl',
+    'tree',
   ]
 
   package { $base_packages :
