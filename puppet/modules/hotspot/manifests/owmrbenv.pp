@@ -25,6 +25,11 @@ class hotspot::owmrbenv (
     user => "$rbenv_user",
   }
 
+  rbenv::plugin { "rbenv-gem-rehash":
+    user   => "$rbenv_user",
+    source => "https://github.com/sstephenson/rbenv-gem-rehash.git"
+  }
+
   rbenv::plugin { "rbenv-binstubs":
     user   => "$rbenv_user",
     source => "https://github.com/ianheggie/rbenv-binstubs.git"
