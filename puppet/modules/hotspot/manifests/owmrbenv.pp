@@ -25,6 +25,11 @@ class hotspot::owmrbenv (
     user => "$rbenv_user",
   }
 
+  rbenv::plugin { "rbenv-binstubs":
+    user   => "$rbenv_user",
+    source => "https://github.com/ianheggie/rbenv-binstubs.git"
+  }
+
   class {
     'rbenv::passenger::apache':
       user               => "$rbenv_user",
