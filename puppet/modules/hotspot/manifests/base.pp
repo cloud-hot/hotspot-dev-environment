@@ -36,6 +36,7 @@ class hotspot::base {
     'wget',
     'curl',
     'tree',
+    'liblzma-dev',
   ]
 
   package { $base_packages :
