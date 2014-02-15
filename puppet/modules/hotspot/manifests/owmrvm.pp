@@ -1,7 +1,7 @@
 # = Class: hotspot::owm
 # 
-# This class is used to install rvm, ruby, passenger, apache
-# and more.
+# This class is used to install ruby, passenger, apache
+# and more with rvm.
 # 
 # == Parameters: 
 # 
@@ -9,9 +9,9 @@
 # 
 # == Sample Usage:
 #
-#  include hotspot::owm
+#  include hotspot::owmrvm
 #
-class hotspot::owm (
+class hotspot::owmrvm (
   $rvm_user = $hotspot::params::dev_user
 ) {
 

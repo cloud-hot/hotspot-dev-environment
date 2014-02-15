@@ -19,4 +19,7 @@ class hotspot::user {
     shell   => '/bin/false',
   }
 
+  user { "${hotspot::params::dev_user}":
+    ensure  => present,
+  }
 }
