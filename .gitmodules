@@ -43,3 +43,6 @@
 [submodule "puppet/modules/rvm"]
 	path = puppet/modules/rvm
 	url = https://github.com/cloud-hot/puppet-rvm.git
+[submodule "puppet/modules/rbenv"]
+	path = puppet/modules/rbenv
+	url = https://github.com/alup/puppet-rbenv.git
