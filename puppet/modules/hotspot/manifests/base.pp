@@ -37,6 +37,7 @@ class hotspot::base {
     'curl',
     'tree',
     'liblzma-dev',
+    dos2unix,
   ]
 
   package { $base_packages :

@@ -65,6 +65,8 @@ class hotspot::owmrvm (
 
   include apache
 
+  include apache::mod::rewrite
+
   apache::vhost { 'owm.example.com':
     servername => 'owm.example.com',
     port       => '80',

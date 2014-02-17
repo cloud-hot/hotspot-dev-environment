@@ -1,12 +1,12 @@
 # = Class: hotspot::owm
-# 
+#
 # This class is used to install ruby, passenger, apache
 # and more with rbenv.
-# 
-# == Parameters: 
-# 
-# == Requires: 
-# 
+#
+# == Parameters:
+#
+# == Requires:
+#
 # == Sample Usage:
 #
 #  include hotspot::owmrbenv
@@ -25,12 +25,12 @@ class hotspot::owmrbenv (
     user => "$rbenv_user",
   }
 
-  rbenv::plugin { "rbenv-gem-rehash":
+  rbenv::plugin { "gem-rehash":
     user   => "$rbenv_user",
     source => "https://github.com/sstephenson/rbenv-gem-rehash.git"
   }
 
-  rbenv::plugin { "rbenv-binstubs":
+  rbenv::plugin { "binstubs":
     user   => "$rbenv_user",
     source => "https://github.com/ianheggie/rbenv-binstubs.git"
   }
@@ -49,6 +49,8 @@ class hotspot::owmrbenv (
   }
 
   include apache
+
+  include apache::mod::rewrite
 
   apache::vhost { 'owm.example.com':
     servername => 'owm.example.com',
