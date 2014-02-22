@@ -91,6 +91,61 @@ define hotspot::repo(
     require  => [ User["${hotspot::params::dev_user}"], Class['git'] ],
   }
 
+  vcsrepo { "genieacs_gui":
+    ensure   => present,
+    path     => "${directory}/genieacs_gui",
+    provider => git,
+    source   => $genieacs_gui_repository,
+    revision => $genieacs_gui_version,
+    owner    => $hotspot::params::dev_user,
+    group    => $hotspot::params::dev_group,
+    require  => [ User["${hotspot::params::dev_user}"], Class['git'] ],
+  }
+
+  vcsrepo { "genieacs":
+    ensure   => present,
+    path     => "${directory}/genieacs",
+    provider => git,
+    source   => $genieacs_repository,
+    revision => $genieacs_version,
+    owner    => $hotspot::params::dev_user,
+    group    => $hotspot::params::dev_group,
+    require  => [ User["${hotspot::params::dev_user}"], Class['git'] ],
+  }
+
+  vcsrepo { "freecwmp":
+    ensure   => present,
+    path     => "${directory}/freecwmp",
+    provider => git,
+    source   => $freecwmp_repository,
+    revision => $freecwmp_version,
+    owner    => $hotspot::params::dev_user,
+    group    => $hotspot::params::dev_group,
+    require  => [ User["${hotspot::params::dev_user}"], Class['git'] ],
+  }
+
+  vcsrepo { "microxml":
+    ensure   => present,
+    path     => "${directory}/microxml",
+    provider => git,
+    source   => $microxml_repository,
+    revision => $microxml_version,
+    owner    => $hotspot::params::dev_user,
+    group    => $hotspot::params::dev_group,
+    require  => [ User["${hotspot::params::dev_user}"], Class['git'] ],
+  }
+
+  vcsrepo { "openwrt_tr069":
+    ensure   => present,
+    path     => "${directory}/openwrt_tr069",
+    provider => git,
+    source   => $openwrt_tr069_repository,
+    revision => $openwrt_tr069_version,
+    owner    => $hotspot::params::dev_user,
+    group    => $hotspot::params::dev_group,
+    require  => [ User["${hotspot::params::dev_user}"], Class['git'] ],
+  }
+
   exec { "clone wrt done": 
     command => "echo clone wrt complete",
     subscribe => Vcsrepo["wrt"],
@@ -111,4 +166,28 @@ define hotspot::repo(
     subscribe => Vcsrepo["vboot"],
   }
 
+  exec { "clone genieacs_gui done":
+    command => "echo clone genieacs_gui complete",
+    subscribe => Vcsrepo["genieacs_gui"],
+  }
+
+  exec { "clone genieacs done":
+    command => "echo clone genieacs complete",
+    subscribe => Vcsrepo["genieacs"],
+  }
+
+  exec { "clone freecwmp done":
+    command => "echo clone freecwmp complete",
+    subscribe => Vcsrepo["freecwmp"],
+  }
+
+  exec { "clone microxml done":
+    command => "echo clone microxml complete",
+    subscribe => Vcsrepo["microxml"],
+  }
+
+  exec { "clone openwrt_tr069 done":
+    command => "echo clone openwrt_tr069 complete",
+    subscribe => Vcsrepo["openwrt_tr069"],
+  }
 }

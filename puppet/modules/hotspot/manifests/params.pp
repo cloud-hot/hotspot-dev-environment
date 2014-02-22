@@ -28,4 +28,19 @@ class hotspot::params {
 
   $vboot_repository = 'https://github.com/cloud-hot/vboot_reference.git'
   $vboot_version    = 'master'
+
+  $genieacs_gui_repository = 'https://github.com/cloud-hot/genieacs-gui.git'
+  $genieacs_gui_version    = 'master'
+
+  $genieacs_repository = 'https://github.com/cloud-hot/genieacs.git'
+  $genieacs_version    = 'master'
+
+  $freecwmp_repository = 'git://dev.freecwmp.org/freecwmp/'
+  $freecwmp_version    = 'master'
+
+  $microxml_repository = 'git://dev.freecwmp.org/microxml/'
+  $microxml_version    = 'master'
+
+  $openwrt_tr069_repository = 'git://dev.freecwmp.org/packages-openwrt-tr069/'
+  $openwrt_tr069_version    = 'master'
 }
