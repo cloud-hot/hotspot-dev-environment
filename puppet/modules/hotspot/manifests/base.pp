@@ -37,7 +37,7 @@ class hotspot::base {
     'curl',
     'tree',
     'liblzma-dev',
-    dos2unix,
+    'dos2unix',
   ]
 
   package { $base_packages :
@@ -68,4 +68,13 @@ class hotspot::base {
     require => Exec['base_apt-get_update']
   }
 
+  $genieacs_packages = [
+    'mongodb',
+    'redis-server',
+  ]
+
+  package { $genieacs_packages :
+    ensure => installed,
+    require => Exec['base_apt-get_update']
+  }
 }
