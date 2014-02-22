@@ -22,28 +22,4 @@ class hotspot::genieacs {
     provider => 'npm',
     require  => Class['nodejs'],
   }
-
-  package { 'libxmljs':
-    ensure   => '0.8.1',
-    provider => 'npm',
-    require  => Class['nodejs'],
-  }
-
-  package { 'redis':
-    ensure   => '0.10.0',
-    provider => 'npm',
-    require  => Class['nodejs'],
-  }
-
-  package { 'hiredis':
-    ensure   => '0.1.15',
-    provider => 'npm',
-    require  => Class['nodejs'],
-  }
-
-  package { 'mongodb':
-    ensure   => '1.3.23',
-    provider => 'npm',
-    require  => Class['nodejs'],
-  }
 }
