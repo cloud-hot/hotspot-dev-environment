@@ -22,7 +22,7 @@ class hotspot::ppa (
   apt::source { "puppetlabs_precise":
     location     => "http://apt.puppetlabs.com/",
     release      => "precise",
-    repos        => " main",
+    repos        => "main",
     include_src  => false,
     key          => 4BD6EC30
   }

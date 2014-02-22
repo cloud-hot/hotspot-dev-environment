@@ -51,4 +51,6 @@ class hotspot (
   }
 
   include hotspot::owmrbenv
+
+  include hotspot::genieacs
 }

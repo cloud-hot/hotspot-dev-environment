@@ -46,3 +46,6 @@
 [submodule "puppet/modules/rbenv"]
 	path = puppet/modules/rbenv
 	url = https://github.com/cloud-hot/puppet-rbenv.git
+[submodule "puppet/modules/nodejs"]
+	path = puppet/modules/nodejs
+	url = https://github.com/cloud-hot/puppetlabs-nodejs.git
