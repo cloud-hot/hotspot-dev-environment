@@ -69,7 +69,6 @@ class hotspot::base {
   }
 
   $genieacs_packages = [
-    'mongodb',
     'redis-server',
   ]
 
