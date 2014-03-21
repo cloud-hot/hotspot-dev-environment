@@ -146,6 +146,17 @@ define hotspot::repo(
     require  => [ User["${hotspot::params::dev_user}"], Class['git'] ],
   }
 
+  vcsrepo { "countly_server":
+    ensure   => present,
+    path     => "${directory}/countly_server",
+    provider => git,
+    source   => $countly_server_repository,
+    revision => $countly_server_version,
+    owner    => $hotspot::params::dev_user,
+    group    => $hotspot::params::dev_group,
+    require  => [ User["${hotspot::params::dev_user}"], Class['git'] ],
+  }
+
   exec { "clone wrt done": 
     command => "echo clone wrt complete",
     subscribe => Vcsrepo["wrt"],
@@ -189,5 +200,10 @@ define hotspot::repo(
   exec { "clone openwrt_tr069 done":
     command => "echo clone openwrt_tr069 complete",
     subscribe => Vcsrepo["openwrt_tr069"],
+  }
+
+  exec { "clone countly_server done":
+    command => "echo clone countly_server complete",
+    subscribe => Vcsrepo["countly_server"],
   }
 }

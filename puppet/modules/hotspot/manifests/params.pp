@@ -43,4 +43,7 @@ class hotspot::params {
 
   $openwrt_tr069_repository = 'git://dev.freecwmp.org/packages-openwrt-tr069/'
   $openwrt_tr069_version    = 'master'
+
+  $countly_server_repository = 'https://github.com/cloud-hot/countly-server.git'
+  $countly_server_version    = 'master'
 }
