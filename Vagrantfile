@@ -6,10 +6,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.hostname = 'hotspot-dev-box'
 
   config.vm.network :forwarded_port, guest: 6000, host: 6000
-  config.vm.network :private_network, ip: "192.168.2.2"
+# config.vm.network :private_network, ip: "192.168.2.2"
 
   # used by company to setup gitlab.
-  # config.vm.network :public_network
+  config.vm.network :public_network
 
   config.vm.synced_folder "../vagrant-share", "/vagrant_data"
   
